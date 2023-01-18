@@ -7,4 +7,4 @@ WORKDIR /tests
 
 RUN npm install
 
-CMD ["npm", "start"]
+CMD ["npm", "test"]

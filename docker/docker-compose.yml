@@ -1,0 +1,33 @@
+version: "3"
+services:
+
+  todotests:
+    build: todo-app/tests
+    environment:
+      - FRONT_HOST=todofront
+    depends_on:
+      - todoback
+      - todofront
+    networks:
+      - net-todo
+
+  todofront:
+    build: todo-app/front-end
+    ports:
+      - 3000:3000
+    environment:
+      - REACT_APP_API_HOST=todoback
+    depends_on:
+      - todoback
+    networks:
+      - net-todo
+
+  todoback:
+    build: todo-app/back-end
+    ports:
+      - 3001:3001
+    networks:
+      - net-todo
+
+networks:
+  net-todo:
